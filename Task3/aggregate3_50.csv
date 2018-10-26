@@ -1,0 +1,11 @@
+Label,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Max,Error %,Throughput,Received KB/sec,Sent KB/sec
+Main script:Open to Home page,65,33,29,69,74,80,8,158,1.538%,4.88612,152.71,2.30
+Main script:Open Random Date,53,31,25,68,81,87,7,96,0.000%,4.19935,119.58,2.06
+Main script:Open Random Page,105,34,32,65,77,92,5,115,0.000%,7.99452,208.06,3.94
+Main script:Open post,95,41,36,78,93,158,8,204,0.000%,7.40394,188.15,3.62
+Main script:Comment,51,49,41,94,124,129,7,172,0.000%,4.12254,9.70,9.55
+Main script:Open Large Calendar,53,38,32,59,73,130,9,199,0.000%,4.10248,116.53,2.03
+Main script:Open Contacts,49,36,29,61,89,204,7,204,0.000%,3.92220,81.68,1.90
+Main script:Open Predefined Date,40,24,20,41,60,70,7,70,0.000%,3.42818,54.83,1.69
+Main script:Open Search by name,43,35,28,71,77,89,7,89,0.000%,3.55578,92.07,1.75
+TOTAL,554,36,31,71,86,158,5,204,0.181%,41.41437,978.30,27.20

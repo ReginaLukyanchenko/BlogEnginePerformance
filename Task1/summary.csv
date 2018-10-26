@@ -1,0 +1,4 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+Go To Main Blog page,10,21,13,32,7.24,0.000%,3.65497,107.10,0.42,30006.0
+Go To Contact,10,10,8,15,2.27,0.000%,3.66435,61.38,0.45,17153.0
+TOTAL,20,15,8,32,7.86,0.000%,7.28067,167.65,0.86,23579.5
