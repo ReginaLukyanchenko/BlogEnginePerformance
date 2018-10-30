@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="user_num" elementType="Argument">
             <stringProp name="Argument.name">user_num</stringProp>
-            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.value">2</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="predefined_date" elementType="Argument">
@@ -36,11 +36,6 @@
           </elementProp>
           <elementProp name="postsRegExpression" elementType="Argument">
             <stringProp name="Argument.name">postsRegExpression</stringProp>
-            <stringProp name="Argument.value">&lt;a href=&quot;#&quot;.*location.href=&apos;/blog/post/(\w+)\?</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="pagesRegExpression" elementType="Argument">
-            <stringProp name="Argument.name">pagesRegExpression</stringProp>
             <stringProp name="Argument.value">&lt;a href=&quot;#&quot;.*location.href=&apos;/blog/post/(\w+)\?</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -201,7 +196,7 @@
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
             </RegexExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="post - Regular Expression Extractor" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
               <stringProp name="RegexExtractor.refname">post</stringProp>
               <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
@@ -240,28 +235,6 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def postRandom = new Random().nextInt(2);
-vars.put(&apos;postRandom&apos;, postRandom.toString());
-
-def postCount = vars.get(&apos;post_matchNr&apos;).toInteger();
-
-if (postRandom == 1 ){
-	def min = 1;
-	def max = postCount;
-	def postNumber = new Random().nextInt((max - min) + 1) + min;	
-	vars.put(&apos;postName&apos;, vars.get(&apos;post_&apos;+postNumber.toString()));
-}
-else {
-	vars.put(&apos;postName&apos;, vars.get(&apos;post_1&apos;));
-}
-</stringProp>
-            </JSR223PreProcessor>
-            <hashTree/>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="2524">OK</stringProp>
@@ -271,74 +244,6 @@ else {
               <boolProp name="Assertion.assume_success">false</boolProp>
               <intProp name="Assertion.test_type">16</intProp>
             </ResponseAssertion>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-              <stringProp name="RegexExtractor.refname">action</stringProp>
-              <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number"></stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">vars.put(&apos;randomPage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223PostProcessor>
-            <hashTree/>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATEGENERATOR - XPath Extractor" enabled="true">
-              <stringProp name="XPathExtractor.default">__VIEWSTATEGENERATOR_IS_NOT_FOUND</stringProp>
-              <stringProp name="XPathExtractor.refname">__VIEWSTATEGENERATOR</stringProp>
-              <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-              <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATEGENERATOR&apos;]/@value</stringProp>
-              <boolProp name="XPathExtractor.validate">false</boolProp>
-              <boolProp name="XPathExtractor.tolerant">true</boolProp>
-              <boolProp name="XPathExtractor.namespace">false</boolProp>
-            </XPathExtractor>
-            <hashTree/>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATE - XPath Extractor" enabled="true">
-              <stringProp name="XPathExtractor.default">__VIEWSTATE_IS_NOT_FOUND</stringProp>
-              <stringProp name="XPathExtractor.refname">__VIEWSTATE</stringProp>
-              <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-              <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATE&apos;]/@value</stringProp>
-              <boolProp name="XPathExtractor.validate">false</boolProp>
-              <boolProp name="XPathExtractor.tolerant">true</boolProp>
-              <boolProp name="XPathExtractor.namespace">false</boolProp>
-            </XPathExtractor>
-            <hashTree/>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTVALIDATION - XPath Extractor" enabled="true">
-              <stringProp name="XPathExtractor.default">__EVENTVALIDATIONR_IS_NOT_FOUND</stringProp>
-              <stringProp name="XPathExtractor.refname">__EVENTVALIDATION</stringProp>
-              <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-              <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTVALIDATION&apos;]/@value</stringProp>
-              <boolProp name="XPathExtractor.validate">false</boolProp>
-              <boolProp name="XPathExtractor.tolerant">true</boolProp>
-              <boolProp name="XPathExtractor.namespace">false</boolProp>
-            </XPathExtractor>
-            <hashTree/>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTTARGET - XPath Extractor" enabled="true">
-              <stringProp name="XPathExtractor.default">__EVENTTARGET_IS_NOT_FOUND</stringProp>
-              <stringProp name="XPathExtractor.refname">__EVENTTARGET</stringProp>
-              <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-              <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTTARGET&apos;]/@value</stringProp>
-              <boolProp name="XPathExtractor.validate">false</boolProp>
-              <boolProp name="XPathExtractor.tolerant">true</boolProp>
-              <boolProp name="XPathExtractor.namespace">false</boolProp>
-            </XPathExtractor>
-            <hashTree/>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Captcha - XPath Extractor" enabled="true">
-              <stringProp name="XPathExtractor.default">CAPTCHA_IS_NOT_FOUND</stringProp>
-              <stringProp name="XPathExtractor.refname">Captcha</stringProp>
-              <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-              <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;ctl00$cphBody$ucCommentList$hfCaptcha&apos;]/@value</stringProp>
-              <boolProp name="XPathExtractor.validate">false</boolProp>
-              <boolProp name="XPathExtractor.tolerant">true</boolProp>
-              <boolProp name="XPathExtractor.namespace">false</boolProp>
-            </XPathExtractor>
             <hashTree/>
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="POST_ID - Regular Expression Extractor" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
@@ -710,7 +615,7 @@ vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="POST_INFO - JSR223 PostProcessor" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -785,7 +690,7 @@ vars.put(&apos;POST_INFO&apos;, object)</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
