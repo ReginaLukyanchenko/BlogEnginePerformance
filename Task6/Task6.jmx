@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.0 r1840935">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Task6" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -41,52 +41,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="user_num" elementType="Argument">
             <stringProp name="Argument.name">user_num</stringProp>
-            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.value">20</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="predefined_date" elementType="Argument">
             <stringProp name="Argument.name">predefined_date</stringProp>
             <stringProp name="Argument.value">2018/10/13</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="homePage" elementType="Argument">
-            <stringProp name="Argument.name">homePage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="randomDatePage" elementType="Argument">
-            <stringProp name="Argument.name">randomDatePage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="predefinedDatePage" elementType="Argument">
-            <stringProp name="Argument.name">predefinedDatePage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="searchByNamePage" elementType="Argument">
-            <stringProp name="Argument.name">searchByNamePage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="largeCalendarPage" elementType="Argument">
-            <stringProp name="Argument.name">largeCalendarPage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="contactsPage" elementType="Argument">
-            <stringProp name="Argument.name">contactsPage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="randomPage" elementType="Argument">
-            <stringProp name="Argument.name">randomPage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="postPage" elementType="Argument">
-            <stringProp name="Argument.name">postPage</stringProp>
-            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="actionRegExpression" elementType="Argument">
@@ -106,7 +66,7 @@
           </elementProp>
           <elementProp name="loopCount" elementType="Argument">
             <stringProp name="Argument.name">loopCount</stringProp>
-            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.value">50</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -126,12 +86,7 @@
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
-        <collectionProp name="CookieManager.cookies"/>
-        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
-      </CookieManager>
-      <hashTree/>
-      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="false">
         <boolProp name="clearEachIteration">true</boolProp>
         <boolProp name="useExpires">false</boolProp>
       </CacheManager>
@@ -150,6 +105,10 @@
         <intProp name="Assertion.test_type">16</intProp>
       </ResponseAssertion>
       <hashTree/>
+      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+        <stringProp name="ConstantTimer.delay">${__Random(3000, 5000)}</stringProp>
+      </ConstantTimer>
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Main script" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -157,7 +116,7 @@
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${user_num}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">300</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">60000</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
@@ -187,472 +146,275 @@
           <stringProp name="LoopController.loops">${loopCount}</stringProp>
         </LoopController>
         <hashTree>
-          <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Random Controller" enabled="true">
-            <intProp name="InterleaveControl.style">1</intProp>
-          </RandomController>
+          <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="bzm - Weighted Switch Controller" enabled="true">
+            <boolProp name="IsRandomChoice">false</boolProp>
+            <collectionProp name="Weights">
+              <collectionProp name="-330580903">
+                <stringProp name="411443561">Open Contacts</stringProp>
+                <stringProp name="53">5</stringProp>
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+              <collectionProp name="-960822970">
+                <stringProp name="-231100144">Home page</stringProp>
+                <stringProp name="1572">15</stringProp>
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+              <collectionProp name="-1682604508">
+                <stringProp name="-1322414027">Open Random Date</stringProp>
+                <stringProp name="1567">10</stringProp>
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+              <collectionProp name="695017827">
+                <stringProp name="-1269029934">Open Predefined Date</stringProp>
+                <stringProp name="1629">30</stringProp>
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+              <collectionProp name="16613865">
+                <stringProp name="1303257692">Search by name</stringProp>
+                <stringProp name="1629">30</stringProp>
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+              <collectionProp name="-1324502417">
+                <stringProp name="400822073">Open Large Calendar</stringProp>
+                <stringProp name="1567">10</stringProp>
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+            </collectionProp>
+          </com.blazemeter.jmeter.control.WeightedSwitchController>
           <hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="true"/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">false</stringProp>
+              <stringProp name="script">vars.put(&apos;page&apos;, &apos;0&apos;)
+vars.put(&apos;post_matchNr&apos;, &apos;0&apos;)</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Contacts" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/contact</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Home page" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path"></stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
             <hashTree>
-              <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Home page - Throughput Controller" enabled="true">
-                <intProp name="ThroughputController.style">1</intProp>
-                <boolProp name="ThroughputController.perThread">false</boolProp>
-                <intProp name="ThroughputController.maxThroughput">1</intProp>
-                <FloatProperty>
-                  <name>ThroughputController.percentThroughput</name>
-                  <value>15.0</value>
-                  <savedValue>0.0</savedValue>
-                </FloatProperty>
-              </ThroughputController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Home page" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
-                  </elementProp>
-                  <stringProp name="HTTPSampler.domain"></stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path"></stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">action</stringProp>
-                    <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default"></stringProp>
-                    <stringProp name="RegexExtractor.match_number"></stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">post</stringProp>
-                    <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">POSTS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="pages - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">page</stringProp>
-                    <stringProp name="RegexExtractor.regex">${pagesRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">PAGE_NUMBERS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                    <stringProp name="cacheKey">true</stringProp>
-                    <stringProp name="filename"></stringProp>
-                    <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">def action = vars.get(&apos;action&apos;);
-vars.put(&apos;homePage&apos;, action);
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                    <stringProp name="scriptLanguage">groovy</stringProp>
-                  </JSR223PostProcessor>
-                  <hashTree/>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
-                    <collectionProp name="Asserion.test_strings">
-                      <stringProp name="2524">OK</stringProp>
-                    </collectionProp>
-                    <stringProp name="Assertion.custom_message"></stringProp>
-                    <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                    <boolProp name="Assertion.assume_success">false</boolProp>
-                    <intProp name="Assertion.test_type">16</intProp>
-                  </ResponseAssertion>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
-              <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open Random Date - Throughput Controller" enabled="true">
-                <intProp name="ThroughputController.style">1</intProp>
-                <boolProp name="ThroughputController.perThread">false</boolProp>
-                <intProp name="ThroughputController.maxThroughput">1</intProp>
-                <FloatProperty>
-                  <name>ThroughputController.percentThroughput</name>
-                  <value>10.0</value>
-                  <savedValue>0.0</savedValue>
-                </FloatProperty>
-              </ThroughputController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Random Date" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
-                  </elementProp>
-                  <stringProp name="HTTPSampler.domain"></stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path">/${year}/${month}/${day}/default</stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="Date - Random CSV Data Set Config" enabled="true">
-                    <stringProp name="filename">../data/date.csv</stringProp>
-                    <stringProp name="fileEncoding">UTF-8</stringProp>
-                    <stringProp name="delimiter">-</stringProp>
-                    <stringProp name="variableNames">year,month,day</stringProp>
-                    <boolProp name="randomOrder">true</boolProp>
-                    <boolProp name="ignoreFirstLine">false</boolProp>
-                    <boolProp name="rewindOnTheEndOfList">true</boolProp>
-                    <boolProp name="independentListPerThread">false</boolProp>
-                  </com.blazemeter.jmeter.RandomCSVDataSetConfig>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">action</stringProp>
-                    <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default"></stringProp>
-                    <stringProp name="RegexExtractor.match_number"></stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">post</stringProp>
-                    <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">POSTS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="pages - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">page</stringProp>
-                    <stringProp name="RegexExtractor.regex">${pagesRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">PAGE_NUMBERS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                    <stringProp name="cacheKey">true</stringProp>
-                    <stringProp name="filename"></stringProp>
-                    <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">vars.put(&apos;randomDatePage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                    <stringProp name="scriptLanguage">groovy</stringProp>
-                  </JSR223PostProcessor>
-                  <hashTree/>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                    <collectionProp name="Asserion.test_strings">
-                      <stringProp name="2524">OK</stringProp>
-                    </collectionProp>
-                    <stringProp name="Assertion.custom_message"></stringProp>
-                    <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                    <boolProp name="Assertion.assume_success">false</boolProp>
-                    <intProp name="Assertion.test_type">16</intProp>
-                  </ResponseAssertion>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
-              <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open Predefined Date - Throughput Controller" enabled="true">
-                <intProp name="ThroughputController.style">1</intProp>
-                <boolProp name="ThroughputController.perThread">false</boolProp>
-                <intProp name="ThroughputController.maxThroughput">1</intProp>
-                <FloatProperty>
-                  <name>ThroughputController.percentThroughput</name>
-                  <value>30.0</value>
-                  <savedValue>0.0</savedValue>
-                </FloatProperty>
-              </ThroughputController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Predefined Date" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
-                  </elementProp>
-                  <stringProp name="HTTPSampler.domain"></stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path">/${predefined_date}/default</stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">action</stringProp>
-                    <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default"></stringProp>
-                    <stringProp name="RegexExtractor.match_number"></stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                    <stringProp name="cacheKey">true</stringProp>
-                    <stringProp name="filename"></stringProp>
-                    <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">vars.put(&apos;predefinedDatePage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                    <stringProp name="scriptLanguage">groovy</stringProp>
-                  </JSR223PostProcessor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="pages - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">page</stringProp>
-                    <stringProp name="RegexExtractor.regex">${pagesRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">1</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">post</stringProp>
-                    <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">POSTS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                    <collectionProp name="Asserion.test_strings">
-                      <stringProp name="2524">OK</stringProp>
-                    </collectionProp>
-                    <stringProp name="Assertion.custom_message"></stringProp>
-                    <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                    <boolProp name="Assertion.assume_success">false</boolProp>
-                    <intProp name="Assertion.test_type">16</intProp>
-                  </ResponseAssertion>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
-              <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Search by name - Throughput Controller" enabled="true">
-                <intProp name="ThroughputController.style">1</intProp>
-                <boolProp name="ThroughputController.perThread">false</boolProp>
-                <intProp name="ThroughputController.maxThroughput">1</intProp>
-                <FloatProperty>
-                  <name>ThroughputController.percentThroughput</name>
-                  <value>30.0</value>
-                  <savedValue>0.0</savedValue>
-                </FloatProperty>
-              </ThroughputController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search by name" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
-                  </elementProp>
-                  <stringProp name="HTTPSampler.domain"></stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path">/search?q=${login}</stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">action</stringProp>
-                    <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default"></stringProp>
-                    <stringProp name="RegexExtractor.match_number"></stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                    <stringProp name="cacheKey">true</stringProp>
-                    <stringProp name="filename"></stringProp>
-                    <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">vars.put(&apos;searchByNamePage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                    <stringProp name="scriptLanguage">groovy</stringProp>
-                  </JSR223PostProcessor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                    <stringProp name="RegexExtractor.refname">post</stringProp>
-                    <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">POSTS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="users - Random CSV Data Set Config" enabled="true">
-                    <stringProp name="filename">../data/users.csv</stringProp>
-                    <stringProp name="fileEncoding">UTF-8</stringProp>
-                    <stringProp name="delimiter">,</stringProp>
-                    <stringProp name="variableNames">login,password</stringProp>
-                    <boolProp name="randomOrder">true</boolProp>
-                    <boolProp name="ignoreFirstLine">false</boolProp>
-                    <boolProp name="rewindOnTheEndOfList">true</boolProp>
-                    <boolProp name="independentListPerThread">false</boolProp>
-                  </com.blazemeter.jmeter.RandomCSVDataSetConfig>
-                  <hashTree/>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                    <collectionProp name="Asserion.test_strings">
-                      <stringProp name="2524">OK</stringProp>
-                    </collectionProp>
-                    <stringProp name="Assertion.custom_message"></stringProp>
-                    <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                    <boolProp name="Assertion.assume_success">false</boolProp>
-                    <intProp name="Assertion.test_type">16</intProp>
-                  </ResponseAssertion>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
-              <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open Large Calendar - Throughput Controller" enabled="true">
-                <intProp name="ThroughputController.style">1</intProp>
-                <boolProp name="ThroughputController.perThread">false</boolProp>
-                <intProp name="ThroughputController.maxThroughput">1</intProp>
-                <FloatProperty>
-                  <name>ThroughputController.percentThroughput</name>
-                  <value>10.0</value>
-                  <savedValue>0.0</savedValue>
-                </FloatProperty>
-              </ThroughputController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Large Calendar" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
-                  </elementProp>
-                  <stringProp name="HTTPSampler.domain"></stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path">/calendar/default.aspx</stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">action</stringProp>
-                    <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default"></stringProp>
-                    <stringProp name="RegexExtractor.match_number"></stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                    <stringProp name="cacheKey">true</stringProp>
-                    <stringProp name="filename"></stringProp>
-                    <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">vars.put(&apos;largeCalendarPage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                    <stringProp name="scriptLanguage">groovy</stringProp>
-                  </JSR223PostProcessor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                    <stringProp name="RegexExtractor.refname">post</stringProp>
-                    <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default">POSTS_ARE_NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                    <collectionProp name="Asserion.test_strings">
-                      <stringProp name="2524">OK</stringProp>
-                    </collectionProp>
-                    <stringProp name="Assertion.custom_message"></stringProp>
-                    <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                    <boolProp name="Assertion.assume_success">false</boolProp>
-                    <intProp name="Assertion.test_type">16</intProp>
-                  </ResponseAssertion>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
-              <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open Contacts - Throughput Controller" enabled="true">
-                <intProp name="ThroughputController.style">1</intProp>
-                <boolProp name="ThroughputController.perThread">false</boolProp>
-                <intProp name="ThroughputController.maxThroughput">1</intProp>
-                <FloatProperty>
-                  <name>ThroughputController.percentThroughput</name>
-                  <value>5.0</value>
-                  <savedValue>0.0</savedValue>
-                </FloatProperty>
-              </ThroughputController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Contacts" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
-                  </elementProp>
-                  <stringProp name="HTTPSampler.domain"></stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path">/contact</stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                    <stringProp name="RegexExtractor.refname">action</stringProp>
-                    <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                    <stringProp name="RegexExtractor.template">$1$</stringProp>
-                    <stringProp name="RegexExtractor.default"></stringProp>
-                    <stringProp name="RegexExtractor.match_number"></stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                    <stringProp name="cacheKey">true</stringProp>
-                    <stringProp name="filename"></stringProp>
-                    <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">vars.put(&apos;contactsPage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                    <stringProp name="scriptLanguage">groovy</stringProp>
-                  </JSR223PostProcessor>
-                  <hashTree/>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                    <collectionProp name="Asserion.test_strings">
-                      <stringProp name="2524">OK</stringProp>
-                    </collectionProp>
-                    <stringProp name="Assertion.custom_message"></stringProp>
-                    <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                    <boolProp name="Assertion.assume_success">false</boolProp>
-                    <intProp name="Assertion.test_type">16</intProp>
-                  </ResponseAssertion>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="pages - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">page</stringProp>
+                <stringProp name="RegexExtractor.regex">${pagesRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">1</stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">post</stringProp>
+                <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Random Date" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/${year}/${month}/${day}/default</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="Date - Random CSV Data Set Config" enabled="true">
+                <stringProp name="filename">../data/date.csv</stringProp>
+                <stringProp name="fileEncoding">UTF-8</stringProp>
+                <stringProp name="delimiter">.</stringProp>
+                <stringProp name="variableNames">day,month,year</stringProp>
+                <boolProp name="randomOrder">true</boolProp>
+                <boolProp name="ignoreFirstLine">false</boolProp>
+                <boolProp name="rewindOnTheEndOfList">true</boolProp>
+                <boolProp name="independentListPerThread">false</boolProp>
+              </com.blazemeter.jmeter.RandomCSVDataSetConfig>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="pages - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">page</stringProp>
+                <stringProp name="RegexExtractor.regex">${pagesRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">1</stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">post</stringProp>
+                <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Predefined Date" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/${predefined_date}/default</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="pages - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">page</stringProp>
+                <stringProp name="RegexExtractor.regex">${pagesRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">1</stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">post</stringProp>
+                <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search by name" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/search?q=${login}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="users - Random CSV Data Set Config" enabled="true">
+                <stringProp name="filename">../data/users.csv</stringProp>
+                <stringProp name="fileEncoding">UTF-8</stringProp>
+                <stringProp name="delimiter">,</stringProp>
+                <stringProp name="variableNames">login,password</stringProp>
+                <boolProp name="randomOrder">true</boolProp>
+                <boolProp name="ignoreFirstLine">false</boolProp>
+                <boolProp name="rewindOnTheEndOfList">true</boolProp>
+                <boolProp name="independentListPerThread">false</boolProp>
+              </com.blazemeter.jmeter.RandomCSVDataSetConfig>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">post</stringProp>
+                <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Large Calendar" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/calendar/default.aspx</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
+                <stringProp name="RegexExtractor.refname">post</stringProp>
+                <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Random page - If Controller" enabled="false">
-            <stringProp name="IfController.condition">(&apos;${lastPage}&apos;==&apos;${homePage}&apos;||&apos;${lastPage}&apos;==&apos;${randomDatePage}&apos;||&apos;${lastPage}&apos;==&apos;${predefinedDatePage}&apos;)</stringProp>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+            <boolProp name="displayJMeterProperties">true</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open Random Page - If page" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&quot;page&quot;).toInteger() &gt; 0 )}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
             <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open Random Page - Throughput Controller" enabled="true">
@@ -671,7 +433,7 @@ vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
                   <collectionProp name="Arguments.arguments">
                     <elementProp name="page" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.value">${pageNumber}</stringProp>
+                      <stringProp name="Argument.value">${page}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                       <stringProp name="Argument.name">page</stringProp>
@@ -698,74 +460,28 @@ vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
                   <stringProp name="parameters"></stringProp>
                   <stringProp name="filename"></stringProp>
                   <stringProp name="cacheKey">true</stringProp>
-                  <stringProp name="script">def pagesCount = vars.get(&apos;page_matchNr&apos;).toInteger();
-
-if (pagesCount == 0){
-	pagesCount = pagesCount + 1 ;
-	vars.put(&apos;page_1&apos;,1.toString());
-}
-
-def lastPageNumber = pagesCount;
-
-for(int i = 1; i &lt; pagesCount+1; i++){
-	def currentPageNumber = vars.get(&apos;page_&apos; + i).toInteger();
-	if(currentPageNumber &gt; lastPageNumber){
-		lastPageNumber = currentPageNumber;
-	}
-}
-
-vars.put(&apos;pageCount&apos;, lastPageNumber.toString());
-
-def min = 1;
-def max = lastPageNumber;
-def pageNumber = new Random().nextInt((max - min) + 1) + min;
-vars.put(&apos;pageNumber&apos;, pageNumber.toString())</stringProp>
+                  <stringProp name="script">OUT.println(ctx.getPreviousResult().getUrlAsString())
+vars.put(&apos;lastPage&apos;, ctx.getPreviousResult().getUrlAsString())
+</stringProp>
                 </JSR223PreProcessor>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                  <stringProp name="RegexExtractor.refname">action</stringProp>
-                  <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default"></stringProp>
-                  <stringProp name="RegexExtractor.match_number"></stringProp>
-                </RegexExtractor>
-                <hashTree/>
-                <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                  <stringProp name="cacheKey">true</stringProp>
-                  <stringProp name="filename"></stringProp>
-                  <stringProp name="parameters"></stringProp>
-                  <stringProp name="script">vars.put(&apos;randomPage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                  <stringProp name="scriptLanguage">groovy</stringProp>
-                </JSR223PostProcessor>
                 <hashTree/>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="posts - Regular Expression Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">unescaped</stringProp>
                   <stringProp name="RegexExtractor.refname">post</stringProp>
                   <stringProp name="RegexExtractor.regex">${postsRegExpression}</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">POSTS_ARE_NOT_FOUND</stringProp>
+                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">-1</stringProp>
                   <stringProp name="Sample.scope">all</stringProp>
                 </RegexExtractor>
                 <hashTree/>
-                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
-                  <collectionProp name="Asserion.test_strings">
-                    <stringProp name="2524">OK</stringProp>
-                  </collectionProp>
-                  <stringProp name="Assertion.custom_message"></stringProp>
-                  <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                  <boolProp name="Assertion.assume_success">false</boolProp>
-                  <intProp name="Assertion.test_type">16</intProp>
-                </ResponseAssertion>
-                <hashTree/>
               </hashTree>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Post - If Controller" enabled="false">
-            <stringProp name="IfController.condition">!(&apos;${lastPage}&apos; == &apos;${contactsPage}&apos;)&amp;&amp; !(&apos;${post_matchNr}&apos;==&apos;0&apos;)</stringProp>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open post - If post" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&quot;post_matchNr&quot;).toInteger() &gt; 0 )}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
             <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open post - Throughput Controller" enabled="true">
@@ -779,254 +495,181 @@ vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
               </FloatProperty>
             </ThroughputController>
             <hashTree>
-              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="true"/>
+              <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open post - Weighted Switch Controller" enabled="true">
+                <boolProp name="IsRandomChoice">false</boolProp>
+                <collectionProp name="Weights">
+                  <collectionProp name="-370340479">
+                    <stringProp name="1306008871">Open random post</stringProp>
+                    <stringProp name="1727">65</stringProp>
+                    <stringProp name="3569038">true</stringProp>
+                  </collectionProp>
+                  <collectionProp name="-1658812821">
+                    <stringProp name="-2092180602">Open first post</stringProp>
+                    <stringProp name="1634">35</stringProp>
+                    <stringProp name="3569038">true</stringProp>
+                  </collectionProp>
+                </collectionProp>
+              </com.blazemeter.jmeter.control.WeightedSwitchController>
               <hashTree>
-                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open random post - Throughput Controller" enabled="true">
-                  <intProp name="ThroughputController.style">1</intProp>
-                  <boolProp name="ThroughputController.perThread">false</boolProp>
-                  <intProp name="ThroughputController.maxThroughput">1</intProp>
-                  <FloatProperty>
-                    <name>ThroughputController.percentThroughput</name>
-                    <value>65.0</value>
-                    <savedValue>0.0</savedValue>
-                  </FloatProperty>
-                </ThroughputController>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open random post" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/post/${postName}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open random post" enabled="true">
-                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                      <collectionProp name="Arguments.arguments"/>
-                    </elementProp>
-                    <stringProp name="HTTPSampler.domain"></stringProp>
-                    <stringProp name="HTTPSampler.port"></stringProp>
-                    <stringProp name="HTTPSampler.protocol"></stringProp>
-                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                    <stringProp name="HTTPSampler.path">/post/${postName}</stringProp>
-                    <stringProp name="HTTPSampler.method">GET</stringProp>
-                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                  </HTTPSamplerProxy>
-                  <hashTree>
-                    <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
-                      <stringProp name="scriptLanguage">groovy</stringProp>
-                      <stringProp name="parameters"></stringProp>
-                      <stringProp name="filename"></stringProp>
-                      <stringProp name="cacheKey">true</stringProp>
-                      <stringProp name="script">def min = 1
-def max = vars.get(&apos;post_matchNr&apos;).toInteger()
-def postNumber = new Random().nextInt((max - min) + 1) + min	
+                  <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">def max = vars.get(&apos;post_matchNr&apos;).toInteger()
+def postNumber = new Random().nextInt(max) + 1	
 vars.put(&apos;postName&apos;, vars.get(&apos;post_&apos;+postNumber.toString()))
 </stringProp>
-                    </JSR223PreProcessor>
-                    <hashTree/>
-                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                      <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                      <stringProp name="RegexExtractor.refname">action</stringProp>
-                      <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                      <stringProp name="RegexExtractor.template">$1$</stringProp>
-                      <stringProp name="RegexExtractor.default"></stringProp>
-                      <stringProp name="RegexExtractor.match_number"></stringProp>
-                    </RegexExtractor>
-                    <hashTree/>
-                    <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                      <stringProp name="cacheKey">true</stringProp>
-                      <stringProp name="filename"></stringProp>
-                      <stringProp name="parameters"></stringProp>
-                      <stringProp name="script">vars.put(&apos;randomPage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                      <stringProp name="scriptLanguage">groovy</stringProp>
-                    </JSR223PostProcessor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATEGENERATOR - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__VIEWSTATEGENERATOR_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__VIEWSTATEGENERATOR</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATEGENERATOR&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATE - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__VIEWSTATE_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__VIEWSTATE</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATE&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTVALIDATION - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__EVENTVALIDATIONR_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__EVENTVALIDATION</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTVALIDATION&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTTARGET - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__EVENTTARGET_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__EVENTTARGET</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTTARGET&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Captcha - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">CAPTCHA_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">Captcha</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;ctl00$cphBody$ucCommentList$hfCaptcha&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                      <collectionProp name="Asserion.test_strings">
-                        <stringProp name="2524">OK</stringProp>
-                      </collectionProp>
-                      <stringProp name="Assertion.custom_message"></stringProp>
-                      <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                      <boolProp name="Assertion.assume_success">false</boolProp>
-                      <intProp name="Assertion.test_type">16</intProp>
-                    </ResponseAssertion>
-                    <hashTree/>
-                  </hashTree>
-                  <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
-                    <boolProp name="displayJMeterProperties">false</boolProp>
-                    <boolProp name="displayJMeterVariables">true</boolProp>
-                    <boolProp name="displaySystemProperties">false</boolProp>
-                  </DebugSampler>
+                  </JSR223PreProcessor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATEGENERATOR - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__VIEWSTATEGENERATOR_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__VIEWSTATEGENERATOR</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATEGENERATOR&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATE - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__VIEWSTATE_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__VIEWSTATE</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATE&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTVALIDATION - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__EVENTVALIDATIONR_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__EVENTVALIDATION</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTVALIDATION&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTTARGET - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__EVENTTARGET_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__EVENTTARGET</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTTARGET&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Captcha - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">CAPTCHA_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">Captcha</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;ctl00$cphBody$ucCommentList$hfCaptcha&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
                   <hashTree/>
                 </hashTree>
-                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open first post - Throughput Controller" enabled="true">
-                  <intProp name="ThroughputController.style">1</intProp>
-                  <boolProp name="ThroughputController.perThread">false</boolProp>
-                  <intProp name="ThroughputController.maxThroughput">1</intProp>
-                  <FloatProperty>
-                    <name>ThroughputController.percentThroughput</name>
-                    <value>35.0</value>
-                    <savedValue>0.0</savedValue>
-                  </FloatProperty>
-                </ThroughputController>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open first post" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/post/${postName}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open first post" enabled="true">
-                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                      <collectionProp name="Arguments.arguments"/>
-                    </elementProp>
-                    <stringProp name="HTTPSampler.domain"></stringProp>
-                    <stringProp name="HTTPSampler.port"></stringProp>
-                    <stringProp name="HTTPSampler.protocol"></stringProp>
-                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                    <stringProp name="HTTPSampler.path">/post/${postName}</stringProp>
-                    <stringProp name="HTTPSampler.method">GET</stringProp>
-                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                  </HTTPSamplerProxy>
-                  <hashTree>
-                    <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
-                      <stringProp name="scriptLanguage">groovy</stringProp>
-                      <stringProp name="parameters"></stringProp>
-                      <stringProp name="filename"></stringProp>
-                      <stringProp name="cacheKey">true</stringProp>
-                      <stringProp name="script">vars.put(&apos;postName&apos;, vars.get(&apos;post_1&apos;))
+                  <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">vars.put(&apos;postName&apos;, vars.get(&apos;post_1&apos;))
 </stringProp>
-                    </JSR223PreProcessor>
-                    <hashTree/>
-                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="action - Regular Expression Extractor" enabled="true">
-                      <stringProp name="RegexExtractor.useHeaders">as_document</stringProp>
-                      <stringProp name="RegexExtractor.refname">action</stringProp>
-                      <stringProp name="RegexExtractor.regex">${actionRegExpression}</stringProp>
-                      <stringProp name="RegexExtractor.template">$1$</stringProp>
-                      <stringProp name="RegexExtractor.default"></stringProp>
-                      <stringProp name="RegexExtractor.match_number"></stringProp>
-                    </RegexExtractor>
-                    <hashTree/>
-                    <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="lastPage - JSR223 PostProcessor" enabled="true">
-                      <stringProp name="cacheKey">true</stringProp>
-                      <stringProp name="filename"></stringProp>
-                      <stringProp name="parameters"></stringProp>
-                      <stringProp name="script">vars.put(&apos;randomPage&apos;, vars.get(&apos;action&apos;));
-vars.put(&apos;lastPage&apos;, vars.get(&apos;action&apos;));</stringProp>
-                      <stringProp name="scriptLanguage">groovy</stringProp>
-                    </JSR223PostProcessor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATEGENERATOR - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__VIEWSTATEGENERATOR_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__VIEWSTATEGENERATOR</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATEGENERATOR&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATE - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__VIEWSTATE_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__VIEWSTATE</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATE&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTVALIDATION - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__EVENTVALIDATIONR_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__EVENTVALIDATION</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTVALIDATION&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTTARGET - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">__EVENTTARGET_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">__EVENTTARGET</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTTARGET&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Captcha - XPath Extractor" enabled="true">
-                      <stringProp name="XPathExtractor.default">CAPTCHA_IS_NOT_FOUND</stringProp>
-                      <stringProp name="XPathExtractor.refname">Captcha</stringProp>
-                      <stringProp name="XPathExtractor.matchNumber">1</stringProp>
-                      <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;ctl00$cphBody$ucCommentList$hfCaptcha&apos;]/@value</stringProp>
-                      <boolProp name="XPathExtractor.validate">false</boolProp>
-                      <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                      <boolProp name="XPathExtractor.namespace">false</boolProp>
-                    </XPathExtractor>
-                    <hashTree/>
-                    <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
-                      <collectionProp name="Asserion.test_strings">
-                        <stringProp name="2524">OK</stringProp>
-                      </collectionProp>
-                      <stringProp name="Assertion.custom_message"></stringProp>
-                      <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
-                      <boolProp name="Assertion.assume_success">false</boolProp>
-                      <intProp name="Assertion.test_type">16</intProp>
-                    </ResponseAssertion>
-                    <hashTree/>
-                  </hashTree>
+                  </JSR223PreProcessor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATEGENERATOR - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__VIEWSTATEGENERATOR_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__VIEWSTATEGENERATOR</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATEGENERATOR&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__VIEWSTATE - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__VIEWSTATE_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__VIEWSTATE</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__VIEWSTATE&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTVALIDATION - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__EVENTVALIDATIONR_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__EVENTVALIDATION</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTVALIDATION&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="__EVENTTARGET - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">__EVENTTARGET_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">__EVENTTARGET</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@id=&apos;__EVENTTARGET&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
+                  <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Captcha - XPath Extractor" enabled="true">
+                    <stringProp name="XPathExtractor.default">CAPTCHA_IS_NOT_FOUND</stringProp>
+                    <stringProp name="XPathExtractor.refname">Captcha</stringProp>
+                    <stringProp name="XPathExtractor.matchNumber">1</stringProp>
+                    <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;ctl00$cphBody$ucCommentList$hfCaptcha&apos;]/@value</stringProp>
+                    <boolProp name="XPathExtractor.validate">false</boolProp>
+                    <boolProp name="XPathExtractor.tolerant">true</boolProp>
+                    <boolProp name="XPathExtractor.namespace">false</boolProp>
+                  </XPathExtractor>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
               <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Comment - Throughput Controller" enabled="true">
@@ -1173,12 +816,6 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
               </hashTree>
             </hashTree>
           </hashTree>
-          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
-            <boolProp name="displayJMeterProperties">false</boolProp>
-            <boolProp name="displayJMeterVariables">true</boolProp>
-            <boolProp name="displaySystemProperties">false</boolProp>
-          </DebugSampler>
-          <hashTree/>
         </hashTree>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -1368,50 +1005,6 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseCodesPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Codes per Second" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-          <longProp name="interval_grouping">1000</longProp>
-          <boolProp name="graph_aggregated">false</boolProp>
-          <stringProp name="include_sample_labels"></stringProp>
-          <stringProp name="exclude_sample_labels"></stringProp>
-          <stringProp name="start_offset"></stringProp>
-          <stringProp name="end_offset"></stringProp>
-          <boolProp name="include_checkbox_state">false</boolProp>
-          <boolProp name="exclude_checkbox_state">false</boolProp>
-        </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
-        <hashTree/>
         <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -1447,7 +1040,7 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
           </objProp>
           <stringProp name="filename"></stringProp>
           <longProp name="interval_grouping">1000</longProp>
-          <boolProp name="graph_aggregated">false</boolProp>
+          <boolProp name="graph_aggregated">true</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
           <stringProp name="exclude_sample_labels"></stringProp>
           <stringProp name="start_offset"></stringProp>
@@ -1491,7 +1084,7 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
           </objProp>
           <stringProp name="filename"></stringProp>
           <longProp name="interval_grouping">500</longProp>
-          <boolProp name="graph_aggregated">false</boolProp>
+          <boolProp name="graph_aggregated">true</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
           <stringProp name="exclude_sample_labels"></stringProp>
           <stringProp name="start_offset"></stringProp>
@@ -1543,10 +1136,16 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
           <boolProp name="include_checkbox_state">false</boolProp>
           <boolProp name="exclude_checkbox_state">false</boolProp>
           <collectionProp name="metricConnections">
-            <collectionProp name="-880780018">
-              <stringProp name="-1204607085">localhost</stringProp>
-              <stringProp name="0"></stringProp>
+            <collectionProp name="-1235412381">
+              <stringProp name="-2051273258">192.168.1.101</stringProp>
+              <stringProp name="1600768">4444</stringProp>
               <stringProp name="66952">CPU</stringProp>
+              <stringProp name="0"></stringProp>
+            </collectionProp>
+            <collectionProp name="-1383002031">
+              <stringProp name="-1204607085">localhost</stringProp>
+              <stringProp name="1600768">4444</stringProp>
+              <stringProp name="-1993889503">Memory</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
           </collectionProp>
@@ -1596,7 +1195,7 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
+        <kg.apc.jmeter.vizualizers.CompositeResultCollector guiclass="kg.apc.jmeter.vizualizers.CompositeGraphGui" testclass="kg.apc.jmeter.vizualizers.CompositeResultCollector" testname="jp@gc - Composite Graph" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -1624,13 +1223,73 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
               <sentBytes>true</sentBytes>
+              <url>true</url>
               <threadCounts>true</threadCounts>
               <idleTime>true</idleTime>
               <connectTime>true</connectTime>
             </value>
           </objProp>
           <stringProp name="filename"></stringProp>
-          <longProp name="interval_grouping">1000</longProp>
+          <longProp name="interval_grouping">500</longProp>
+          <boolProp name="graph_aggregated">false</boolProp>
+          <stringProp name="include_sample_labels"></stringProp>
+          <stringProp name="exclude_sample_labels"></stringProp>
+          <stringProp name="start_offset"></stringProp>
+          <stringProp name="end_offset"></stringProp>
+          <boolProp name="include_checkbox_state">false</boolProp>
+          <boolProp name="exclude_checkbox_state">false</boolProp>
+          <collectionProp name="COMPOSITE_CFG">
+            <collectionProp name="">
+              <stringProp name="1639513749">jp@gc - Bytes Throughput Over Time</stringProp>
+              <stringProp name="1639513749">jp@gc - Bytes Throughput Over Time</stringProp>
+              <stringProp name="245914917">jp@gc - Active Threads Over Time</stringProp>
+              <stringProp name="245914917">jp@gc - Active Threads Over Time</stringProp>
+            </collectionProp>
+            <collectionProp name="">
+              <stringProp name="-1640934111">Bytes Received per Second</stringProp>
+              <stringProp name="-1915779958">Bytes Sent per Second</stringProp>
+              <stringProp name="840804594">Main script</stringProp>
+              <stringProp name="2133254370">Overall Active Threads</stringProp>
+            </collectionProp>
+          </collectionProp>
+        </kg.apc.jmeter.vizualizers.CompositeResultCollector>
+        <hashTree/>
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Active Threads Over Time" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <longProp name="interval_grouping">500</longProp>
           <boolProp name="graph_aggregated">false</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
           <stringProp name="exclude_sample_labels"></stringProp>
