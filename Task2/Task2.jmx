@@ -92,7 +92,7 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">localhost/blog</stringProp>
+        <stringProp name="HTTPSampler.domain">10.17.175.58/blog</stringProp>
         <stringProp name="HTTPSampler.port"></stringProp>
         <stringProp name="HTTPSampler.protocol">http</stringProp>
         <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -101,6 +101,10 @@
         <stringProp name="HTTPSampler.connect_timeout"></stringProp>
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
       </ConfigTestElement>
+      <hashTree/>
+      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+        <stringProp name="ConstantTimer.delay">500</stringProp>
+      </ConstantTimer>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Task2" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -345,10 +349,6 @@ vars.put(&apos;post_count_per_user&apos;, post_count_per_user.toString() );
             <boolProp name="CounterConfig.per_user">true</boolProp>
           </CounterConfig>
           <hashTree/>
-          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
-            <stringProp name="ConstantTimer.delay">500</stringProp>
-          </ConstantTimer>
-          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create post" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -388,7 +388,10 @@ String postText = vars.get(&apos;LorenText&apos;).substring(0, textLength)
 
 vars.put(&apos;postText&apos;, postText)
 
-vars.put(&apos;time&apos;, new Date().format(&apos;HH:mm&apos;))</stringProp>
+use (groovy.time.TimeCategory) {
+     vars.put(&apos;time&apos;, new Random().nextInt(1440).minute.from.now.format(&apos;HH:mm&apos;))
+ }
+</stringProp>
             </JSR223PreProcessor>
             <hashTree/>
             <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="Date - Random CSV Data Set Config" enabled="true">
