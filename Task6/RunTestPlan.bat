@@ -3,7 +3,7 @@ SET homeDir=%cd%
 rem ECHO Home dir - %homeDir%
 for /f "tokens=*" %%a in ('dir *.jmx /b /s') do set scriptDir=%%a
 rem ECHO Script dir - %scriptDir%
-SET jmeterDir=D:\apache-jmeter-5.0\bin
+SET jmeterDir=C:\apache-jmeter-5.0\apache-jmeter-5.0\bin
 rem ECHO Jmeter dir - %jmeterDir%
 
 if exist "%homeDir%\Report" RMDIR /S /Q "%homeDir%\Report"
@@ -25,11 +25,12 @@ call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\LatenciesOv
 call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\ResponseCodesPerSecond.png" --input-jtl "%homeDir%\Report\%resultsFile%" --plugin-type ResponseCodesPerSecond   --width 800 --height 600
 call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\ThroughputVsThreads.png" --input-jtl "%homeDir%\Report\%resultsFile%" --plugin-type ThroughputVsThreads   --width 800 --height 600
 call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\TimesVsThreads.png" --input-jtl "%homeDir%\Report\%resultsFile%" --plugin-type TimesVsThreads    --width 800 --height 600
-call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\TransactionsPerSecond .png" --input-jtl "%homeDir%\Report\%resultsFile%" --plugin-type TransactionsPerSecond    --width 800 --height 600
+call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\TransactionsPerSecond.png" --input-jtl "%homeDir%\Report\%resultsFile%" --plugin-type TransactionsPerSecond    --width 800 --height 600
 
 
 call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\CPU_PerfMonMetrics.png" --input-jtl "%homeDir%\Report\CPU_PerfMonMetrics.jtl" --plugin-type PerfMon --width 800 --height 600
 call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\Memory_PerfMonMetrics.png" --input-jtl "%homeDir%\Report\Memory_PerfMonMetrics.jtl" --plugin-type PerfMon --width 800 --height 600
 call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\Network_PerfMonMetrics.png" --input-jtl "%homeDir%\Report\Network_PerfMonMetrics.jtl" --plugin-type PerfMon --width 800 --height 600
+call JMeterPluginsCMD.bat --generate-png "%homeDir%\ScreenShotReport\PerfMonMetrics.png" --input-jtl "%homeDir%\Report\PerfMonMetrics.jtl" --plugin-type PerfMon --width 800 --height 600
 
-call jmeter -g "%homeDir%\Report\result.jtl" -o "%homeDir%\HTMLReport"
+call jmeter -g "%homeDir%\Report\%resultsFile%" -o "%homeDir%\HTMLReport"

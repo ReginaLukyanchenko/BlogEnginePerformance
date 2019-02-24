@@ -21,7 +21,7 @@
           </elementProp>
           <elementProp name="predefined_date" elementType="Argument">
             <stringProp name="Argument.name">predefined_date</stringProp>
-            <stringProp name="Argument.value">2019/01/05</stringProp>
+            <stringProp name="Argument.value">2019/02/05</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="actionRegExpression" elementType="Argument">
@@ -41,12 +41,12 @@
           </elementProp>
           <elementProp name="anonymous_loop_count" elementType="Argument">
             <stringProp name="Argument.name">anonymous_loop_count</stringProp>
-            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.value">50</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="anonymous_number" elementType="Argument">
             <stringProp name="Argument.name">anonymous_number</stringProp>
-            <stringProp name="Argument.value">150</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="admin_number" elementType="Argument">
@@ -66,7 +66,7 @@
           </elementProp>
           <elementProp name="anonymous_ramp_up" elementType="Argument">
             <stringProp name="Argument.name">anonymous_ramp_up</stringProp>
-            <stringProp name="Argument.value">300</stringProp>
+            <stringProp name="Argument.value">1000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="postIdRegExpression" elementType="Argument">
@@ -166,9 +166,9 @@
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${anonymous_number}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1000</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">100</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration">600</stringProp>
+        <stringProp name="ThreadGroup.duration">1200</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
       </ThreadGroup>
       <hashTree>
@@ -899,12 +899,12 @@ vars.put(&apos;__CALLBACKPARAM&apos;, callback)
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${admin_number}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">20</stringProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">600</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">1200</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
       </ThreadGroup>
       <hashTree>
@@ -1033,9 +1033,10 @@ def maxNumber = 0
 	
 if (!editors.isEmpty()){
 	for ( i = 0; i &lt; editors.size(); i++){
-		editors.UserName[i]= editors.UserName[i]-&apos;User_&apos;
-		if (maxNumber &lt; editors.UserName[i].toInteger()){
-			maxNumber = editors.UserName[i].toInteger()
+		userNumber = (editors.UserName[i] =~ /User_(\d+)/)[0][1].toInteger()
+		vars.put(&apos;userNumber&apos;, userNumber.toString())
+		if (maxNumber &lt; userNumber){
+			maxNumber = userNumber
 		}
 	}
 }
@@ -1053,7 +1054,7 @@ else{
 	switchValue = &apos;Delete user&apos;
 }
 
-def deletedUser = editors[ new Random().nextInt(editors.size()+1)]
+def deletedUser = editors[ new Random().nextInt(editors.size())]
 deletedUser.IsChecked = true
 
 vars.put(&apos;switchValue&apos; , switchValue)
@@ -1076,7 +1077,7 @@ vars.put(&apos;DELETED_USER_INFO&apos;, JsonOutput.toJson(deletedUser))
             <hashTree>
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Add user" enabled="true">
                 <collectionProp name="ModuleController.node_path">
-                  <stringProp name="80579378">Task7</stringProp>
+                  <stringProp name="764597751">Test Plan</stringProp>
                   <stringProp name="80579378">Task7</stringProp>
                   <stringProp name="-765470743">Samples</stringProp>
                   <stringProp name="-1229323254">Add user</stringProp>
@@ -1108,7 +1109,7 @@ vars.put(&apos;DELETED_USER_INFO&apos;, JsonOutput.toJson(deletedUser))
               </hashTree>
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Delete user" enabled="true">
                 <collectionProp name="ModuleController.node_path">
-                  <stringProp name="80579378">Task7</stringProp>
+                  <stringProp name="764597751">Test Plan</stringProp>
                   <stringProp name="80579378">Task7</stringProp>
                   <stringProp name="-765470743">Samples</stringProp>
                   <stringProp name="487903488">Delete user</stringProp>
@@ -1132,12 +1133,12 @@ vars.put(&apos;DELETED_USER_INFO&apos;, JsonOutput.toJson(deletedUser))
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${editor_number}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">20</stringProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">600</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">1200</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
       </ThreadGroup>
       <hashTree>
@@ -1787,7 +1788,7 @@ vars.put(&apos;POST_INFO&apos;, object)
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">[${USER_INFO}]</stringProp>
+                  <stringProp name="Argument.value">[${DELETED_USER_INFO}]</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -1911,7 +1912,7 @@ vars.put(&apos;USER_INFO&apos;, user)
           </hashTree>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.perfmon.PerfMonCollector guiclass="kg.apc.jmeter.vizualizers.PerfMonGui" testclass="kg.apc.jmeter.perfmon.PerfMonCollector" testname="jp@gc - PerfMon Metrics Collector" enabled="false">
+      <kg.apc.jmeter.perfmon.PerfMonCollector guiclass="kg.apc.jmeter.vizualizers.PerfMonGui" testclass="kg.apc.jmeter.perfmon.PerfMonCollector" testname="jp@gc - PerfMon Metrics Collector" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -1944,7 +1945,7 @@ vars.put(&apos;USER_INFO&apos;, user)
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">result/result7_1000_PerfMon.jtl</stringProp>
+        <stringProp name="filename">D:\Blog\BlogEnginePerformance\Task7\Report\PerfMonMetrics.jtl</stringProp>
         <longProp name="interval_grouping">1000</longProp>
         <boolProp name="graph_aggregated">false</boolProp>
         <stringProp name="include_sample_labels"></stringProp>
@@ -2105,7 +2106,7 @@ vars.put(&apos;USER_INFO&apos;, user)
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename">D:\Blog\BlogEnginePerformance\Task7\Report\testresults.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
