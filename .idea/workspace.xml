@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="45d5550c-8c7e-4399-a7aa-aaed05fcccf8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Task2/Task2.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/Task2/Task2.jmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/Task3.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/Task3/Task3.jmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate1_100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate1_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate1_50.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate2_100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate2_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate3_100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/aggregate3_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/summary.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/summary1_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/summary2_100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/summary2_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/summary3_100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task3/summary3_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task6/RunTestPlan.bat" beforeDir="false" afterPath="$PROJECT_DIR$/Task6/RunTestPlan.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task6/Task6.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/Task6/Task6.jmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task7/Task7.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/Task7/Task7.jmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/date.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/date.csv" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1165" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="BlogEnginePerformance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogEnginePerformance" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogEnginePerformance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogEnginePerformance" type="462c0819:PsiDirectoryNode" />
+              <item name="Task7" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="45d5550c-8c7e-4399-a7aa-aaed05fcccf8" name="Default Changelist" comment="" />
+      <created>1549538098919</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549538098919</updated>
+    </task>
+    <task id="LOCAL-00001" summary="update task6 7">
+      <created>1549538160649</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1549538160649</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update task6 7">
+      <created>1549538347072</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1549538347072</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update task6 7">
+      <created>1551007823585</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1551007823585</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15369128" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="DB Browser" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Project Explorer" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info id="Job Explorer" order="9" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Console" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+    </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update task6 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="update task6 7" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8.0_191</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

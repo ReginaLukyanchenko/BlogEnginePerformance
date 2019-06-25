@@ -77,7 +77,7 @@
           </elementProp>
           <elementProp name="post_count" elementType="Argument">
             <stringProp name="Argument.name">post_count</stringProp>
-            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LorenText" elementType="Argument">
@@ -92,7 +92,7 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">10.17.175.58/blog</stringProp>
+        <stringProp name="HTTPSampler.domain">10.17.175.4/blog</stringProp>
         <stringProp name="HTTPSampler.port"></stringProp>
         <stringProp name="HTTPSampler.protocol">http</stringProp>
         <stringProp name="HTTPSampler.contentEncoding"></stringProp>
